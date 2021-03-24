@@ -29,7 +29,7 @@ export class Componente3Component implements OnInit
       (data: Images) =>
       {
         this.images = data;
-        console.log('Variavel preenchida', this.images)
+        console.log('Variavel preenchida:', this.images)
         console.log('recebido: ', data)
         //}, error =>
       }, (error: any) =>

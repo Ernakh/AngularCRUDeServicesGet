@@ -1,3 +1,5 @@
+import { Componente13Component } from './componente13/componente13.component';
+import { Componente12Component } from './componente12/componente12.component';
 import { Componente3Component } from './componente3/componente3.component';
 import { Componente2Component } from './componente2/componente2.component';
 import { Componente1Component } from './componente1/componente1.component';
@@ -23,7 +25,9 @@ const routes: Routes = [
   {path:'componente8', component:Componente8Component},
   {path:'componente9', component:Componente9Component},
   {path:'componente10', component:Componente10Component},
-  {path:'componente11', component:Componente11Component}
+  {path:'componente11', component:Componente11Component},
+  {path:'componente12', component:Componente12Component},
+  {path:'componente13', component:Componente13Component}
 ];
 
 @NgModule({

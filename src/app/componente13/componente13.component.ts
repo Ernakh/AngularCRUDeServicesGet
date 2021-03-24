@@ -1,4 +1,7 @@
+import { FotosServicoService } from './../services/fotos-servico.service';
 import { Component, OnInit } from '@angular/core';
+import { Images } from '../models/Images.model';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-componente13',
@@ -7,9 +10,66 @@ import { Component, OnInit } from '@angular/core';
 })
 export class Componente13Component implements OnInit {
 
-  constructor() { }
+  images:Images;
+  erro:any;
 
-  ngOnInit(): void {
+  id:string;
+
+  constructor(private FotosServico: FotosServicoService, private activatedRoute: ActivatedRoute)
+  {
+
   }
 
+  ngOnInit(): void
+  {
+    /*this.id = this.activatedRoute.queryParams.subscribe(
+      params => {
+        this.id = params['albumId'];
+        console.log(this.id);
+      }
+    );*/
+
+    this.id = this.activatedRoute.snapshot.queryParams["albumId"];
+    console.log(this.id);
+
+    this.getter2();
+  }
+
+  getter()
+  {
+    this.FotosServico.getFotos().subscribe(
+      //data =>
+      (data: Images) =>
+      {
+        this.images = data;
+        console.log('Variavel preenchida:', this.images)
+        console.log('recebido: ', data)
+        //}, error =>
+      }, (error: any) =>
+      {
+        this.erro = error;
+        console.error('ERROOO:', error);
+      }
+    );
+  }
+
+  getter2()
+  {
+    console.log('getter2');
+    console.log(this.id);
+    this.FotosServico.getFotosByAlbum(this.id).subscribe(
+      //data =>
+      (data: Images) =>
+      {
+        this.images = data;
+        console.log('Variavel preenchida:', this.images)
+        console.log('recebido: ', data)
+        //}, error =>
+      }, (error: any) =>
+      {
+        this.erro = error;
+        console.error('ERROOO:', error);
+      }
+    );
+  }
 }
